@@ -39,7 +39,7 @@ public class FfmpegAnimatedCoverConverter(
             }
 
             var convertArgs =
-                $"-y -i \"{tempVideoPath}\" -vf \"scale=-1:-1:flags=lanczos\" -c:v libwebp -compression_level 6 -q:v {webpQuality} -loop 0 -an \"{tempWebpPath}\"";
+                $"-y -i \"{tempVideoPath}\" -vf \"fps=30,scale=-1:-1:flags=lanczos\" -c:v libwebp -compression_level 6 -q:v {webpQuality} -loop 0 -an \"{tempWebpPath}\"";
             await RunFfmpegAsync(ffmpegBinary, convertArgs, "webp-convert", cancellationToken);
 
             if (!File.Exists(tempWebpPath))
